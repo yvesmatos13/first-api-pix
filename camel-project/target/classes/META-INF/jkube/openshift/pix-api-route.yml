@@ -1,0 +1,22 @@
+---
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  annotations:
+    app.openshift.io/vcs-ref: main
+    jkube.io/git-url: git@github.com:yvesmatos13/first-api-pix.git
+    app.openshift.io/vcs-uri: git@github.com:yvesmatos13/first-api-pix.git
+    jkube.io/git-commit: f6101e90bd6e78143db59068dc4c90028a43c035
+    jkube.io/git-branch: main
+  labels:
+    app: pix-api
+    provider: jkube
+    version: 1.0-SNAPSHOT
+    group: io.example
+  name: pix-api
+spec:
+  port:
+    targetPort: 8080
+  to:
+    kind: Service
+    name: pix-api

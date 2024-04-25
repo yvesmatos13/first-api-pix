@@ -1,0 +1,21 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "MyApplication",
+            "request": "launch",
+            "mainClass": "org.openapitools.pix.MyApplication",
+            "projectName": "openapi-spring"
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-PixApiApplication<pix-api>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.pix.api.pixapi.PixApiApplication",
+            "projectName": "pix-api",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        }
+    ]
+}

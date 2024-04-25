@@ -1,0 +1,15 @@
+---
+apiVersion: v1
+kind: List
+items:
+- apiVersion: image.openshift.io/v1
+  kind: ImageStream
+  metadata:
+    name: pix-api
+  spec:
+    tags:
+    - from:
+        kind: ImageStreamImage
+        name: pix-api@sha256:354bc69cc641572fd3986c325ead7b84d5cf72d7c52641ab3237f514a4fde1c1
+        namespace: pix
+      name: latest

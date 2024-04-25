@@ -1,0 +1,482 @@
+{
+    "openapi": "3.0.2",
+    "info": {
+        "title": "PIX API",
+        "version": "1.0.0",
+        "description": "API de integração da chave de endereçamento do PIX",
+        "contact": {
+            "name": "Yves Matos",
+            "email": "yvesmatos@redhat.com"
+        }
+    },
+    "paths": {
+        "/incluir": {
+            "summary": "incluir chave de endereçamento",
+            "description": "Inclusão de nova chave endereçamento",
+            "post": {
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/incluirChaveRequest"
+                            },
+                            "examples": {
+                                "incluirChaveRequest": {
+                                    "value": {
+                                        "tipoChave": {
+                                            "tipoChave": "Email"
+                                        },
+                                        "chave": "some text",
+                                        "ispb": "some text",
+                                        "codigoAgencia": "some text",
+                                        "tipoConta": {
+                                            "tipoConta": "ContaCorrente"
+                                        },
+                                        "numeroConta": "some text",
+                                        "dataHoraAberturaConta": "2018-02-10T09:30Z",
+                                        "tipoPessoa": {
+                                            "tipoPessoa": "PessoaJuridica"
+                                        },
+                                        "documentoFiscal": "some text",
+                                        "nome": "some text",
+                                        "nomeFantasia": "some text",
+                                        "motivoInclusao": {
+                                            "motivoInclusao": "Reconciliacao"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "tags": [
+                    "incluir"
+                ],
+                "responses": {
+                    "200": {
+                        "$ref": "#/components/responses/incluirChaveResponse"
+                    },
+                    "400": {
+                        "$ref": "#/components/responses/excecaoNegocio"
+                    },
+                    "500": {
+                        "$ref": "#/components/responses/excecaoInfraEstrutura"
+                    }
+                },
+                "summary": "incluir",
+                "description": "incluir chave de endereçamento"
+            }
+        },
+        "/consultar/{chave}": {
+            "summary": "Consultar chave de endereçamento",
+            "description": "Consultar chave endereçamento",
+            "get": {
+                "tags": [
+                    "consultar"
+                ],
+                "responses": {
+                    "200": {
+                        "$ref": "#/components/responses/incluirChaveResponse"
+                    },
+                    "400": {
+                        "$ref": "#/components/responses/excecaoNegocio"
+                    },
+                    "500": {
+                        "$ref": "#/components/responses/excecaoInfraEstrutura"
+                    }
+                },
+                "summary": "consultarChave"
+            },
+            "parameters": [
+                {
+                    "name": "chave",
+                    "schema": {
+                        "type": "string"
+                    },
+                    "in": "path",
+                    "required": true
+                }
+            ]
+        }
+    },
+    "components": {
+        "schemas": {
+            "incluirChaveRequest": {
+                "title": "Root Type for incluirChaveRequest",
+                "description": "",
+                "type": "object",
+                "properties": {
+                    "tipoChave": {
+                        "$ref": "#/components/schemas/tipoChave",
+                        "properties": {
+                            "type": {
+                                "type": "string"
+                            },
+                            "values": {
+                                "type": "array",
+                                "items": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    },
+                    "chave": {
+                        "type": "string"
+                    },
+                    "ispb": {
+                        "type": "string"
+                    },
+                    "codigoAgencia": {
+                        "type": "string"
+                    },
+                    "tipoConta": {
+                        "$ref": "#/components/schemas/tipoConta",
+                        "properties": {
+                            "type": {
+                                "type": "string"
+                            },
+                            "values": {
+                                "type": "array",
+                                "items": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    },
+                    "numeroConta": {
+                        "type": "string"
+                    },
+                    "dataHoraAberturaConta": {
+                        "format": "date-time",
+                        "type": "string"
+                    },
+                    "tipoPessoa": {
+                        "$ref": "#/components/schemas/tipoPessoa",
+                        "properties": {
+                            "type": {
+                                "type": "string"
+                            },
+                            "values": {
+                                "type": "array",
+                                "items": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    },
+                    "documentoFiscal": {
+                        "type": "string"
+                    },
+                    "nome": {
+                        "type": "string"
+                    },
+                    "nomeFantasia": {
+                        "type": "string"
+                    },
+                    "motivoInclusao": {
+                        "$ref": "#/components/schemas/motivoInclusao",
+                        "properties": {
+                            "type": {
+                                "type": "string"
+                            },
+                            "values": {
+                                "type": "array",
+                                "items": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                },
+                "example": {
+                    "tipoChave": {
+                        "tipoChave": "Telefone"
+                    },
+                    "chave": "some text",
+                    "ispb": "some text",
+                    "codigoAgencia": "some text",
+                    "tipoConta": {
+                        "tipoConta": "ContaPagamento"
+                    },
+                    "numeroConta": "some text",
+                    "dataHoraAberturaConta": "2018-02-10T09:30Z",
+                    "tipoPessoa": {
+                        "tipoPessoa": "PessoaJuridica"
+                    },
+                    "documentoFiscal": "some text",
+                    "nome": "some text",
+                    "nomeFantasia": "some text",
+                    "motivoInclusao": {
+                        "motivoInclusao": "Reconciliacao"
+                    }
+                }
+            },
+            "incluirChaveResponse": {
+                "title": "Root Type for incluirChaveResponse",
+                "description": "",
+                "type": "object",
+                "properties": {
+                    "chave": {
+                        "type": "string"
+                    },
+                    "dataCriacaoChave": {
+                        "format": "date-time",
+                        "type": "string"
+                    },
+                    "dataInicioPosseChave": {
+                        "format": "date-time",
+                        "type": "string"
+                    },
+                    "dataAberturaReivindicacao": {
+                        "format": "date-time",
+                        "type": "string"
+                    }
+                },
+                "example": {
+                    "chave": "some text",
+                    "dataCriacaoChave": "2018-02-10T09:30Z",
+                    "dataInicioPosseChave": "2018-02-10T09:30Z",
+                    "dataAberturaReivindicacao": "2018-02-10T09:30Z"
+                }
+            },
+            "tipoChave": {
+                "title": "Root Type for tipoChave",
+                "description": "",
+                "type": "object",
+                "properties": {
+                    "tipoChave": {
+                        "enum": [
+                            "CPF\"",
+                            "CNPJ",
+                            "Telefone",
+                            "Email",
+                            "EVP"
+                        ],
+                        "type": "string",
+                        "properties": {
+                            "type": {
+                                "type": "string"
+                            },
+                            "values": {
+                                "type": "array",
+                                "items": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                },
+                "example": {
+                    "tipoChave": "EVP"
+                }
+            },
+            "tipoConta": {
+                "title": "Root Type for tipoConta",
+                "description": "",
+                "type": "object",
+                "properties": {
+                    "tipoConta": {
+                        "enum": [
+                            "ContaCorrente",
+                            "ContaSalario",
+                            "ContaPoupanca",
+                            "ContaPagamento"
+                        ],
+                        "type": "string",
+                        "properties": {
+                            "type": {
+                                "type": "string"
+                            },
+                            "values": {
+                                "type": "array",
+                                "items": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                },
+                "example": {
+                    "tipoConta": "ContaSalario"
+                }
+            },
+            "motivoInclusao": {
+                "title": "Root Type for MotivoInclusao",
+                "description": "",
+                "type": "object",
+                "properties": {
+                    "motivoInclusao": {
+                        "enum": [
+                            "SolicitacaoCliente",
+                            "Reconciliacao"
+                        ],
+                        "type": "string",
+                        "properties": {
+                            "type": {
+                                "type": "string"
+                            },
+                            "values": {
+                                "type": "array",
+                                "items": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                },
+                "example": {
+                    "MotivoInclusao": "Reconciliacao"
+                }
+            },
+            "tipoPessoa": {
+                "description": "",
+                "type": "object",
+                "properties": {
+                    "tipoPessoa": {
+                        "description": "",
+                        "enum": [
+                            "PessoaFisica",
+                            "PessoaJuridica"
+                        ],
+                        "type": "string"
+                    }
+                },
+                "example": {
+                    "tipoPessoa": "PessoaFisica"
+                }
+            },
+            "excecaoNegocio": {
+                "description": "",
+                "type": "object",
+                "properties": {
+                    "codigo": {
+                        "description": "",
+                        "type": "integer"
+                    },
+                    "mensagem": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "descricao": {
+                        "description": "",
+                        "type": "string"
+                    }
+                },
+                "example": {
+                    "codigo": 60,
+                    "mensagem": "some text",
+                    "descricao": "some text"
+                }
+            },
+            "excecaoInfraEstrutura": {
+                "description": "",
+                "type": "object",
+                "properties": {
+                    "codigo": {
+                        "description": "",
+                        "type": "integer"
+                    },
+                    "mensagem": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "descricao": {
+                        "description": "",
+                        "type": "string"
+                    }
+                }
+            },
+            "consultarChaveResponse": {
+                "description": "",
+                "type": "object",
+                "properties": {
+                    "chave": {
+                        "description": "",
+                        "type": "string"
+                    }
+                },
+                "example": {
+                    "chave": "f1d2d2f924e986ac86fdf7b36c94bcdf32beec15e2d397d97759c2b5b841c91c"
+                }
+            }
+        },
+        "responses": {
+            "incluirChaveResponse": {
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "$ref": "#/components/schemas/incluirChaveResponse"
+                        },
+                        "examples": {
+                            "incluirChaveResponse": {
+                                "value": {
+                                    "chave": "some text",
+                                    "dataCriacaoChave": "2018-02-10T09:30Z",
+                                    "dataInicioPosseChave": "2018-02-10T09:30Z",
+                                    "dataAberturaReivindicacao": "2018-02-10T09:30Z"
+                                }
+                            }
+                        }
+                    }
+                },
+                "description": ""
+            },
+            "excecaoNegocio": {
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "$ref": "#/components/schemas/excecaoNegocio"
+                        },
+                        "examples": {
+                            "excecaoNegocio": {
+                                "value": {
+                                    "codigo": 23,
+                                    "mensagem": "some text",
+                                    "descricao": "some text"
+                                }
+                            }
+                        }
+                    }
+                },
+                "description": ""
+            },
+            "excecaoInfraEstrutura": {
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "$ref": "#/components/schemas/excecaoInfraEstrutura"
+                        },
+                        "examples": {
+                            "excecaoInfraEstrutura": {
+                                "value": {
+                                    "codigo": 72,
+                                    "mensagem": "some text",
+                                    "descricao": "some text"
+                                }
+                            }
+                        }
+                    }
+                },
+                "description": ""
+            },
+            "consultarChaveResponse": {
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "$ref": "#/components/schemas/consultarChaveResponse"
+                        },
+                        "examples": {
+                            "consultarChaveResponse": {
+                                "value": {
+                                    "chave": "some text"
+                                }
+                            }
+                        }
+                    }
+                },
+                "description": ""
+            }
+        }
+    }
+}

@@ -1,0 +1,56 @@
+{
+  "swagger" : "2.0",
+  "info" : {
+    "description" : "API de integração da chave de endereçamento do PIX",
+    "version" : "1.0.0",
+    "title" : "PIX API",
+    "contact" : {
+      "name" : "Yves Matos",
+      "email" : "yvesmatos@redhat.com"
+    }
+  },
+  "paths" : {
+    "/incluir" : {
+      "post" : {
+        "tags" : [ "incluir" ],
+        "summary" : "incluir",
+        "description" : "incluir chave de endereçamento",
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "$ref" : "#/components/responses/incluirChaveResponse"
+          },
+          "400" : {
+            "$ref" : "#/components/responses/excecaoNegocio"
+          },
+          "500" : {
+            "$ref" : "#/components/responses/excecaoInfraEstrutura"
+          }
+        }
+      }
+    },
+    "/consultar/{chave}" : {
+      "get" : {
+        "tags" : [ "consultar" ],
+        "summary" : "consultarChave",
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "$ref" : "#/components/responses/incluirChaveResponse"
+          },
+          "400" : {
+            "$ref" : "#/components/responses/excecaoNegocio"
+          },
+          "500" : {
+            "$ref" : "#/components/responses/excecaoInfraEstrutura"
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "chave",
+        "in" : "path",
+        "required" : true
+      } ]
+    }
+  }
+}

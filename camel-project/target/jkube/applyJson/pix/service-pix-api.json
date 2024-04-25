@@ -1,0 +1,97 @@
+{
+  "apiVersion" : "v1",
+  "kind" : "Service",
+  "metadata" : {
+    "annotations" : {
+      "app.openshift.io/vcs-ref" : "main",
+      "app.openshift.io/vcs-uri" : "git@github.com:yvesmatos13/first-api-pix.git",
+      "jkube.io/git-branch" : "main",
+      "jkube.io/git-commit" : "f6101e90bd6e78143db59068dc4c90028a43c035",
+      "jkube.io/git-url" : "git@github.com:yvesmatos13/first-api-pix.git",
+      "prometheus.io/path" : "/metrics",
+      "prometheus.io/port" : "9779",
+      "prometheus.io/scrape" : "true"
+    },
+    "creationTimestamp" : "2024-04-24T23:15:10Z",
+    "labels" : {
+      "app" : "pix-api",
+      "expose" : "true",
+      "group" : "io.example",
+      "provider" : "jkube",
+      "version" : "1.0-SNAPSHOT"
+    },
+    "managedFields" : [ {
+      "apiVersion" : "v1",
+      "fieldsType" : "FieldsV1",
+      "fieldsV1" : {
+        "f:metadata" : {
+          "f:annotations" : {
+            "." : { },
+            "f:app.openshift.io/vcs-ref" : { },
+            "f:app.openshift.io/vcs-uri" : { },
+            "f:jkube.io/git-branch" : { },
+            "f:jkube.io/git-commit" : { },
+            "f:jkube.io/git-url" : { },
+            "f:prometheus.io/path" : { },
+            "f:prometheus.io/port" : { },
+            "f:prometheus.io/scrape" : { }
+          },
+          "f:labels" : {
+            "." : { },
+            "f:app" : { },
+            "f:expose" : { },
+            "f:group" : { },
+            "f:provider" : { },
+            "f:version" : { }
+          }
+        },
+        "f:spec" : {
+          "f:internalTrafficPolicy" : { },
+          "f:ports" : {
+            "." : { },
+            "k:{\"port\":8080,\"protocol\":\"TCP\"}" : {
+              "." : { },
+              "f:name" : { },
+              "f:port" : { },
+              "f:protocol" : { },
+              "f:targetPort" : { }
+            }
+          },
+          "f:selector" : { },
+          "f:sessionAffinity" : { },
+          "f:type" : { }
+        }
+      },
+      "manager" : "okhttp",
+      "operation" : "Update",
+      "time" : "2024-04-24T23:15:10Z"
+    } ],
+    "name" : "pix-api",
+    "namespace" : "pix",
+    "resourceVersion" : "98937",
+    "uid" : "3946e028-a6c3-4bf6-9d1e-6bd7e2992043"
+  },
+  "spec" : {
+    "clusterIP" : "172.30.40.233",
+    "clusterIPs" : [ "172.30.40.233" ],
+    "ipFamilies" : [ "IPv4" ],
+    "ipFamilyPolicy" : "SingleStack",
+    "ports" : [ {
+      "name" : "http",
+      "port" : 8080,
+      "protocol" : "TCP",
+      "targetPort" : 8080
+    } ],
+    "selector" : {
+      "app" : "pix-api",
+      "group" : "io.example",
+      "provider" : "jkube"
+    },
+    "sessionAffinity" : "None",
+    "type" : "ClusterIP",
+    "internalTrafficPolicy" : "Cluster"
+  },
+  "status" : {
+    "loadBalancer" : { }
+  }
+}

@@ -1,0 +1,8 @@
+{
+    "useCamelCase": true,
+    "useOptional": true,
+    "useTags": true,
+    "interfaceOnly": true,
+    "gradleBuildFile": true,
+    "addOperationIdToTags": true
+  }

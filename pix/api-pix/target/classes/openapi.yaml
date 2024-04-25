@@ -1,0 +1,373 @@
+openapi: 3.0.2
+info:
+  contact:
+    email: yvesmatos@redhat.com
+    name: Yves Matos
+  description: API de integração da chave de endereçamento do PIX
+  title: PIX API
+  version: 1.0.0
+servers:
+- url: /
+paths:
+  /incluir:
+    description: Inclusão de nova chave endereçamento
+    post:
+      description: incluir chave de endereçamento
+      requestBody:
+        content:
+          application/json:
+            examples:
+              incluirChaveRequest:
+                value:
+                  tipoChave:
+                    tipoChave: Email
+                  chave: some text
+                  ispb: some text
+                  codigoAgencia: some text
+                  tipoConta:
+                    tipoConta: ContaCorrente
+                  numeroConta: some text
+                  dataHoraAberturaConta: 2018-02-10T09:30Z
+                  tipoPessoa:
+                    tipoPessoa: PessoaJuridica
+                  documentoFiscal: some text
+                  nome: some text
+                  nomeFantasia: some text
+                  motivoInclusao:
+                    motivoInclusao: Reconciliacao
+            schema:
+              $ref: '#/components/schemas/incluirChaveRequest'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              examples:
+                incluirChaveResponse:
+                  value:
+                    chave: some text
+                    dataCriacaoChave: 2018-02-10T09:30Z
+                    dataInicioPosseChave: 2018-02-10T09:30Z
+                    dataAberturaReivindicacao: 2018-02-10T09:30Z
+              schema:
+                $ref: '#/components/schemas/incluirChaveResponse'
+          description: ""
+        "400":
+          content:
+            application/json:
+              examples:
+                excecaoNegocio:
+                  value:
+                    codigo: 23
+                    mensagem: some text
+                    descricao: some text
+              schema:
+                $ref: '#/components/schemas/excecaoNegocio'
+          description: ""
+        "500":
+          content:
+            application/json:
+              examples:
+                excecaoInfraEstrutura:
+                  value:
+                    codigo: 72
+                    mensagem: some text
+                    descricao: some text
+              schema:
+                $ref: '#/components/schemas/excecaoInfraEstrutura'
+          description: ""
+      summary: incluir
+      tags:
+      - incluir
+      x-content-type: application/json
+      x-accepts: application/json
+      x-tags:
+      - tag: incluir
+    summary: incluir chave de endereçamento
+  /consultar/{chave}:
+    description: Consultar chave endereçamento
+    get:
+      parameters:
+      - explode: false
+        in: path
+        name: chave
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              examples:
+                incluirChaveResponse:
+                  value:
+                    chave: some text
+                    dataCriacaoChave: 2018-02-10T09:30Z
+                    dataInicioPosseChave: 2018-02-10T09:30Z
+                    dataAberturaReivindicacao: 2018-02-10T09:30Z
+              schema:
+                $ref: '#/components/schemas/incluirChaveResponse'
+          description: ""
+        "400":
+          content:
+            application/json:
+              examples:
+                excecaoNegocio:
+                  value:
+                    codigo: 23
+                    mensagem: some text
+                    descricao: some text
+              schema:
+                $ref: '#/components/schemas/excecaoNegocio'
+          description: ""
+        "500":
+          content:
+            application/json:
+              examples:
+                excecaoInfraEstrutura:
+                  value:
+                    codigo: 72
+                    mensagem: some text
+                    descricao: some text
+              schema:
+                $ref: '#/components/schemas/excecaoInfraEstrutura'
+          description: ""
+      summary: consultarChave
+      tags:
+      - consultar
+      x-accepts: application/json
+      x-tags:
+      - tag: consultar
+    summary: Consultar chave de endereçamento
+components:
+  responses:
+    incluirChaveResponse:
+      content:
+        application/json:
+          examples:
+            incluirChaveResponse:
+              value:
+                chave: some text
+                dataCriacaoChave: 2018-02-10T09:30Z
+                dataInicioPosseChave: 2018-02-10T09:30Z
+                dataAberturaReivindicacao: 2018-02-10T09:30Z
+          schema:
+            $ref: '#/components/schemas/incluirChaveResponse'
+      description: ""
+    excecaoNegocio:
+      content:
+        application/json:
+          examples:
+            excecaoNegocio:
+              value:
+                codigo: 23
+                mensagem: some text
+                descricao: some text
+          schema:
+            $ref: '#/components/schemas/excecaoNegocio'
+      description: ""
+    excecaoInfraEstrutura:
+      content:
+        application/json:
+          examples:
+            excecaoInfraEstrutura:
+              value:
+                codigo: 72
+                mensagem: some text
+                descricao: some text
+          schema:
+            $ref: '#/components/schemas/excecaoInfraEstrutura'
+      description: ""
+    consultarChaveResponse:
+      content:
+        application/json:
+          examples:
+            consultarChaveResponse:
+              value:
+                chave: some text
+          schema:
+            $ref: '#/components/schemas/consultarChaveResponse'
+      description: ""
+  schemas:
+    incluirChaveRequest:
+      description: ""
+      example:
+        tipoChave:
+          tipoChave: Telefone
+        chave: some text
+        ispb: some text
+        codigoAgencia: some text
+        tipoConta:
+          tipoConta: ContaPagamento
+        numeroConta: some text
+        dataHoraAberturaConta: 2018-02-10T09:30Z
+        tipoPessoa:
+          tipoPessoa: PessoaJuridica
+        documentoFiscal: some text
+        nome: some text
+        nomeFantasia: some text
+        motivoInclusao:
+          motivoInclusao: Reconciliacao
+      properties:
+        tipoChave:
+          $ref: '#/components/schemas/tipoChave'
+        chave:
+          type: string
+        ispb:
+          type: string
+        codigoAgencia:
+          type: string
+        tipoConta:
+          $ref: '#/components/schemas/tipoConta'
+        numeroConta:
+          type: string
+        dataHoraAberturaConta:
+          format: date-time
+          type: string
+        tipoPessoa:
+          $ref: '#/components/schemas/tipoPessoa'
+        documentoFiscal:
+          type: string
+        nome:
+          type: string
+        nomeFantasia:
+          type: string
+        motivoInclusao:
+          $ref: '#/components/schemas/motivoInclusao'
+      title: Root Type for incluirChaveRequest
+      type: object
+    incluirChaveResponse:
+      description: ""
+      example:
+        chave: some text
+        dataCriacaoChave: 2018-02-10T09:30Z
+        dataInicioPosseChave: 2018-02-10T09:30Z
+        dataAberturaReivindicacao: 2018-02-10T09:30Z
+      properties:
+        chave:
+          type: string
+        dataCriacaoChave:
+          format: date-time
+          type: string
+        dataInicioPosseChave:
+          format: date-time
+          type: string
+        dataAberturaReivindicacao:
+          format: date-time
+          type: string
+      title: Root Type for incluirChaveResponse
+      type: object
+    tipoChave:
+      description: ""
+      example:
+        tipoChave: EVP
+      properties:
+        tipoChave:
+          enum:
+          - CPF"
+          - CNPJ
+          - Telefone
+          - Email
+          - EVP
+          properties:
+            type:
+              type: string
+            values:
+              items:
+                type: string
+              type: array
+          type: string
+      title: Root Type for tipoChave
+      type: object
+    tipoConta:
+      description: ""
+      example:
+        tipoConta: ContaSalario
+      properties:
+        tipoConta:
+          enum:
+          - ContaCorrente
+          - ContaSalario
+          - ContaPoupanca
+          - ContaPagamento
+          properties:
+            type:
+              type: string
+            values:
+              items:
+                type: string
+              type: array
+          type: string
+      title: Root Type for tipoConta
+      type: object
+    motivoInclusao:
+      description: ""
+      example:
+        MotivoInclusao: Reconciliacao
+      properties:
+        motivoInclusao:
+          enum:
+          - SolicitacaoCliente
+          - Reconciliacao
+          properties:
+            type:
+              type: string
+            values:
+              items:
+                type: string
+              type: array
+          type: string
+      title: Root Type for MotivoInclusao
+      type: object
+    tipoPessoa:
+      description: ""
+      example:
+        tipoPessoa: PessoaFisica
+      properties:
+        tipoPessoa:
+          description: ""
+          enum:
+          - PessoaFisica
+          - PessoaJuridica
+          type: string
+      type: object
+    excecaoNegocio:
+      description: ""
+      example:
+        codigo: 60
+        mensagem: some text
+        descricao: some text
+      properties:
+        codigo:
+          description: ""
+          type: integer
+        mensagem:
+          description: ""
+          type: string
+        descricao:
+          description: ""
+          type: string
+      type: object
+    excecaoInfraEstrutura:
+      description: ""
+      properties:
+        codigo:
+          description: ""
+          type: integer
+        mensagem:
+          description: ""
+          type: string
+        descricao:
+          description: ""
+          type: string
+      type: object
+    consultarChaveResponse:
+      description: ""
+      example:
+        chave: f1d2d2f924e986ac86fdf7b36c94bcdf32beec15e2d397d97759c2b5b841c91c
+      properties:
+        chave:
+          description: ""
+          type: string
+      type: object
