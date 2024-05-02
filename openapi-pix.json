@@ -26,20 +26,20 @@
                                         "tipoChave": {
                                             "tipoChave": "Email"
                                         },
-                                        "chave": "some text",
-                                        "ispb": "some text",
-                                        "codigoAgencia": "some text",
+                                        "chave": "exemplo@empresa.com.br",
+                                        "ispb": "01234567",
+                                        "codigoAgencia": "1234",
                                         "tipoConta": {
                                             "tipoConta": "ContaCorrente"
                                         },
-                                        "numeroConta": "some text",
+                                        "numeroConta": "567890",
                                         "dataHoraAberturaConta": "2018-02-10T09:30Z",
                                         "tipoPessoa": {
                                             "tipoPessoa": "PessoaJuridica"
                                         },
-                                        "documentoFiscal": "some text",
-                                        "nome": "some text",
-                                        "nomeFantasia": "some text",
+                                        "documentoFiscal": "12.345.678/0001-90",
+                                        "nome": "Empresa Exemplo Ltda",
+                                        "nomeFantasia": "Empresa Exemplo",
                                         "motivoInclusao": {
                                             "motivoInclusao": "Reconciliacao"
                                         }
@@ -76,14 +76,14 @@
                     "consultar"
                 ],
                 "responses": {
-                    "200": {
-                        "$ref": "#/components/responses/incluirChaveResponse"
-                    },
                     "400": {
                         "$ref": "#/components/responses/excecaoNegocio"
                     },
                     "500": {
                         "$ref": "#/components/responses/excecaoInfraEstrutura"
+                    },
+                    "200": {
+                        "$ref": "#/components/responses/consultarChaveResponse"
                     }
                 },
                 "summary": "consultarChave"
@@ -411,10 +411,9 @@
                         "examples": {
                             "incluirChaveResponse": {
                                 "value": {
-                                    "chave": "some text",
-                                    "dataCriacaoChave": "2018-02-10T09:30Z",
-                                    "dataInicioPosseChave": "2018-02-10T09:30Z",
-                                    "dataAberturaReivindicacao": "2018-02-10T09:30Z"
+                                    "chave": "exemplo@empresa.com.br",
+                                    "dataCriacaoChave": "2023-10-12T14:00Z",
+                                    "dataInicioPosseChave": "2023-10-12T14:00Z"
                                 }
                             }
                         }
@@ -469,7 +468,7 @@
                         "examples": {
                             "consultarChaveResponse": {
                                 "value": {
-                                    "chave": "some text"
+                                    "chave": "exemplo@empresa.com.br"
                                 }
                             }
                         }
